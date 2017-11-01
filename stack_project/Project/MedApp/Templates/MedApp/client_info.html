@@ -1,0 +1,77 @@
+{% extends 'template.html' %}
+{% block forms %}
+    <table class="form_table" align="center">
+        <tr>
+            <td><a href="/medapp/clients/{{ Client.token }}&service&" class="submit" >Добавить процедуру</a></td>
+        <td><a href="/medapp/clients/{{ Client.token }}/edit-client/" class="submit" >Редактировать</a></td>
+        <td><a href="/medapp/clients/{{ Client.token }}/delete-client/" class="submit" >Удалить</a></td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block main %}
+    <div><h3>Карточка клиента</h3></div>
+    <div class="client_info">
+    <table class="table_non_border">
+    <tr>
+        <td>Дата регистрации клиента:</td>
+        <td><b>{{ RegistrationDate }}</b></td>
+    </tr>
+    <tr>
+        <td>Имя, фамилия пациента:</td>
+        <td><b>{{ Client.name }} {{ Client.sorname }}</b></td>
+    </tr>
+        <tr>
+            <td>Номер моб. телефона:</td>
+            <td><b>{{ Client.number }}</b></td>
+    </tr>
+        <tr>
+        <td>Дата рождения:</td>
+            <td><b>{{ BirthdayStr }}</b></td>
+    </tr>
+        {% if Client.info == 'none' %}
+        <tr>
+        <td>Дополнительная информация:</td>
+        <td><b>Отсутствует</b></td>
+    </tr>
+        {% else %}
+            <tr>
+        <td>Дополнительная информация:</td>
+            <td><b>{{ Client.info }}</b></td>
+    </tr>
+        {% endif %}
+    </table>
+    </div>
+
+    <div><h3>Проведенные процедуры</h3></div>
+    <table class="table" align="center" >
+        <tr>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Процедура</th>
+            <th>Препарат</th>
+            <th>Стоимость</th>
+            <th>Прибыль</th>
+            <th>Дополнительно</th>
+            <th></th>
+        </tr>
+        {% for service in Services %}
+            {% for service_title in ServicesList %}
+                    {% if service.title_id == service_title.id %}
+                        <tr>
+                            <td>{{ service.date }}</td>
+                            <td>{{ service.time }}</td>
+                            <td>{{ service_title.title }}</td>
+                            <td>{{ service.medicine }}</td>
+                            <td>{{ service.cash }}</td>
+                            <td>{{ service.income }}</td>
+                            <td>{{ service.info }}</td>
+                            <td><a href="/medapp/clients/{{ Client.token }}&{{ service.token }}&delete-client-service/">Удалить</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+    {% endfor %}
+        <tr><td></td><td></td><td></td><td><b>CУММА,грн</b></td><td><B>{{ Cash }}</B></td><td><B>{{ Income }}</B></td><td></td><td></td></tr>
+    </table>
+{% endblock %}

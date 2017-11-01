@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <tr><form action="client_base.html" method="POST">
+        {% csrf_token %}
+        <td><label for="find_client" class="label">Поиск в базе</label><td>
+        <td><input type="text" class="input" name="find_client" placeholder="Имя/Фамилия/Номер телефона в формате +380..."></td>
+        <td><input type="submit" value="Поиск"></td>
+    </form></tr>
+    </table>
+
+    {% if ErrorMessage %}
+        <p class="warning_text" align="center">Номер телефона в формате +380...</p>
+        <p class="warning_text" align="center">{{ ErrorMessage }} <a href="/medapp/registration-client/">зарегестрируйте</a></p>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block main %}
+    <table class="table" align="center" >
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Номер телефона</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Статус</th>
+        </tr>
+        {% for client in Clients %}
+            <tr>
+                <td>{{ client.name }}</td>
+                <td>{{ client.sorname }}</td>
+                <td>{{ client.number }}
+                <td><a href="/medapp/clients/{{ client.token }}&">Перейти</a></td>
+                <td><a href="/medapp/clients/{{ client.token }}/edit-client/">Редактировать</a></td>
+                <td><a href="/medapp/clients/{{ client.token }}/delete-client/">Удалить</a></td>
+                <td>{{ client.status }}</td>
+            </tr>
+            <!--Выделение клиента с особым статусом-->
+            {% if client.status == 1 %}
+            <script>
+                var client = {{ client.status }};
+                $('.table tr:last').addClass('active-client');
+            </script>
+            {% endif %}
+            <!---->
+        {% endfor %}
+    </table>
+{% endblock %}

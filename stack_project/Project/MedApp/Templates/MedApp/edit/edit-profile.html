@@ -1,0 +1,25 @@
+{% extends 'MedApp/template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="edit-client-info.html" method="post">
+    {% csrf_token %}
+        <tr>
+            <td><label for="input">Действующий пароль</label></td>
+            <td><input type="password" name="old_password" id="input" class="input" value="{{ Client.name }}" maxlength="32"></td>
+        </tr>
+        <tr>
+            <td><label for="input">Новый пароль</label></td>
+            <td><input type="password" name="new_password" id="input" class="input" value="{{ Client.sorname }}" maxlength="32"></td>
+        </tr>
+        <tr>
+            <td><label for="input">Новый пароль еще раз</label></td>
+            <td><input type="password" name="rep_new_password" id="input" class="input" value="{{ Client.number }}" maxlength="32"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="submit" id="submit" value="Сохранить изменения"></td>
+        </tr>
+    </form>
+    </table>
+{% endblock %}

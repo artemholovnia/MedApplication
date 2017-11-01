@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="calculate-interval.html" method="POST">
+    {% csrf_token %}
+        <tr>
+            <td><label for="date_from" class="label">Дата от</label></td>
+            <td><input type="date" class="input" id="input" name="date_from" max="{{ MaxDate }}" min="{{ MinDate }}" value="{{ Value }}"></td>
+        </tr>
+        <tr>
+            <td><label for="date_to" class="label">Дата до</label></td>
+            <td><input type="date" class="input" id="input" name="date_to" MAX="{{ MaxDate }}" min="{{ MinDate }}" value="{{ Value }}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="submit" id="submit" value="Посчитать"></td>
+        </tr>
+    </form>
+    </table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="create-service.html" method="post">
+    {% csrf_token %}
+        <tr>
+            <td><label for="date" class="label">Дата</label></td>
+            <td>{{ form.date }}</td>
+        </tr>
+        <tr>
+            <td><label for="time" class="label">Время</label></td>
+            <td>{{ form.time }}</td>
+        </tr>
+        <tr>
+            <td><label for="cash" class="label">Стоимость</label></td>
+            <td>{{ form.cash }}</td>
+        </tr>
+        <tr>
+            <td><label for="income" class="label">Заработок</label></td>
+            <td>{{ form.income }}</td>
+        </tr>
+        <tr>
+            <td><label for="income" class="label">Препарат</label></td>
+            <td>{{ form.medicine }}</td>
+        </tr>
+        <tr>
+            <td><label for="income" class="label">Доп. инфо</label></td>
+            <td>{{ form.info }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Зарегестрировать клиента" class="submit"></td>
+        </tr>
+    </form>
+    </table>
+{% endblock %}

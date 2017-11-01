@@ -1,0 +1,11 @@
+{% extends 'template.html' %}
+
+{% block main %}
+    <div class="services-list">
+    <ul class="services-list">
+    {% for service in ServicesList %}
+        <li><a href="/medapp/clients/{{ Client.token }}&service&{{ service.token }}&registration-client-service/">{{ service.title }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

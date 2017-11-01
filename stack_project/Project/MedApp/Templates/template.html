@@ -1,0 +1,138 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link href={% static 'medapp.css' %} rel="stylesheet">
+    <link href={% static 'preloader.css' %} rel="stylesheet">
+    <link href={% static 'image.css' %} rel="stylesheet">
+    <script src={% static 'js/jquery-3.2.1.min.js' %}></script>
+    <script src={% static 'js/scripts.js' %}></script>
+
+</head>
+<body>
+
+<div id="page-preloader"><div id="preloader">
+	<div class="f_circleG" id="frotateG_01"></div>
+	<div class="f_circleG" id="frotateG_02"></div>
+	<div class="f_circleG" id="frotateG_03"></div>
+	<div class="f_circleG" id="frotateG_04"></div>
+	<div class="f_circleG" id="frotateG_05"></div>
+	<div class="f_circleG" id="frotateG_06"></div>
+	<div class="f_circleG" id="frotateG_07"></div>
+	<div class="f_circleG" id="frotateG_08"></div>
+</div></div>
+
+
+<!-------------------------->
+
+<!--TOP menu-->
+{% if User.is_active %}
+    <div class="auth">
+    <ul class="auth">
+        <li><a href="/medapp/edit-profile/">Редактировать профиль <b>DEBUG</b></a></li>
+        <li><a href="/auth/logout/">Logout ({{ User.first_name }} {{ User.last_name }})</a></li>
+        <li class="clients_nmb">Зарегестрированные клиенты: <span></span></li>
+    </ul>
+    </div>
+<div class="menu">
+    <ul class="menu">
+        <a href="/"><li>Главная</li></a>
+        <a href="/"><li>Контакт</li></a>
+</ul>
+</div>
+{% endif %}
+<!--Content-->
+<div id="content">
+
+{% if User.is_active %}
+<div class="left-nav clearfix">
+    <div id="down-menu">
+    <ul class="down-menu">
+    <!-- JOURNAL -->
+        {% if journalapp_active %}
+            <a href=""><li class="li-journal active">Журнал</li></a>
+        {% else %}
+            <a href=""><li class="li-journal">Журнал</li></a>
+        {% endif %}
+        {% if journalapp_active %}
+            <ul class="last-menu-journal">
+                <a href="/journal/all-clients&"><li>Все даты</li></a>
+            </ul>
+        {% else %}
+            <ul class="last-menu-journal hidden">
+                <a href="/journal/all-clients&"><li>Все даты</li></a>
+            </ul>
+        {% endif %}
+
+    <!--BASE-->
+        {% if medapp_active %}
+            <a href="/medapp/"><li class="li-base active">База</li></a>
+        {% else %}
+            <a href="/medapp/"><li class="li-base">База</li></a>
+        {% endif %}
+        {% if medapp_active %}
+            <ul class="last-menu-base">
+                <a href="/medapp/clients/"><li class="list-menu">Мои клиенты</li></a>
+                <a href="/medapp/registration-client/"><li class="list-menu">Зарегистрировать клиента</li></a>
+                <a href="/medapp/create-new-service/"><li class="list-menu">Создать новую услугу</li></a>
+            </ul>
+        {% else %}
+            <ul class="last-menu-base hidden">
+                <a href="/medapp/clients/"><li class="list-menu">Мои клиенты</li></a>
+                <a href="/medapp/registration-client/"><li class="list-menu">Зарегистрировать клиента</li></a>
+                <a href="/medapp/create-new-service/"><li class="list-menu">Создать новую услугу</li></a>
+            </ul>
+        {% endif %}
+
+    <!--CALCULATE-->
+        {% if calculateapp_active %}
+            <a href="/calculate/interval/"><li class="li-calculate active">Отчетность</li></a>
+        {% else %}
+            <a href="/calculate/interval/"><li class="li-calculate">Отчетность</li></a>
+        {% endif %}
+        {% if calculateapp_active %}
+            <ul class="last-menu-calculate">
+                <a href="/calculate/today/"><li class="list-menu">Cегодня</li></a>
+                <a href="/calculate/last-day/"><li class="list-menu">Вчера</li></a>
+                <a href="/calculate/last-week/"><li class="list-menu">Неделя</li></a>
+                <a href="/calculate/last-month/"><li class="list-menu">Месяц</li></a>
+                <a href="/calculate/interval/"><li class="list-menu">Задать промежуток</li></a>
+            </ul>
+        {% else %}
+            <ul class="last-menu-calculate hidden">
+                <a href="/calculate/today/"><li class="list-menu">Cегодня</li></a>
+                <a href="/calculate/last-day/"><li class="list-menu">Вчера</li></a>
+                <a href="/calculate/last-week/"><li class="list-menu">Неделя</li></a>
+                <a href="/calculate/last-month/"><li class="list-menu">Месяц</li></a>
+                <a href="/calculate/interval/"><li class="list-menu">Задать промежуток</li></a>
+            </ul>
+        {% endif %}
+
+        <a href="#"><li>Кабинеты <b>DEBUG</b></li></a>
+    </ul>
+    </div>
+</div>
+{% endif %}
+
+<div class="right-content clearfix">
+<div class="forms">
+{% block forms %}
+{% endblock %}
+</div>
+
+
+<div class="main">
+{% block main %}
+{% endblock %}
+</div>
+</div>
+
+</div>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'template.html' %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+
+{% block main %}
+
+    <h1>Задачи к выполнению</h1>
+    <ul style="color: red">
+        <li>Сделать так, чтоб в поле модели "Услуги" нельзя было оставлять поле ЦЕНА и ПРЫБИЛЬ пустыми (приводит к шибкlkjе при подсчетах)</li>
+        <li>Решить проблемму с разметкой страницы (если текст не влазит, то правый блок перепрыгивает вниз после левого)</li>
+    </ul>
+
+    <h2>Приложение учета клиента <b>BETA version</b></h2>
+    <p>Простая программа учета клиентов медицинского центра/ медицинского кабинета. <b>Доступные функции:
+        <ul>
+        <li>Регистрация клиента</li>
+        <li>Редактирование клиента</li>
+        <li>Запись на процедуру</li>
+        <li>Создание процедуры</li>
+        <li>Простой бухгалтерский подсчет</li>
+        </ul></b></p>
+    <p>Python, Django Framework, HTML5, CSS3, JavaScript, JQuery (в процессе: AJAX)</p>
+    <p><i>Разработчик Головня Артем (<a href="https://vk.com/nn_ns">VK</a>), 2017, Poland, Lublin</i> </p>
+
+
+    <!-- Скрипт увеличения картинки-->
+
+    <div class="small-image">
+        <img class="small-image-src" src={% static 'image/homer.jpg' %}>
+    </div>
+
+    <div class="big-image">
+        <a class="close-image" href="#"><img src={% static 'image/close.png' %}></a><br>
+        <img class="big-image-src" src={% static 'image/homer.jpg' %}>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="login.html" method="post" class="login">
+    {% csrf_token %}
+    <tr>
+        <td><label for="input" class="label">Nazwa użytkownika</label></td>
+        <td><input type="text" name="username" id="input" class="input" autocomplete="off"></td>
+    </tr>
+    <tr>
+        <td><label for="input" class="label">Hasło</label></td>
+        <td><input type="password" name="password" id="input" class="input" autocomplete="off"></td>
+    </tr>
+    {% if login_error %}
+        <tr>
+            <td></td><td><label class="error">{{ login_error }}</label></td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td></td><td><input type="submit" value="Войти в систему" class="submit"></td>
+        </tr>
+    </form>
+    </table>
+{% endblock %}

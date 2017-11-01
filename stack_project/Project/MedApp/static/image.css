@@ -1,0 +1,28 @@
+
+.small-image-src{
+    height: 15em;
+    width: 15em;
+}
+
+.big-image{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(157, 157, 157, 0.85);
+    text-align: center;
+    display: none;
+    z-index: 9999;
+}
+
+.big-image-src{
+    margin-top: 100px;
+}
+
+.close-image{
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
+
+}

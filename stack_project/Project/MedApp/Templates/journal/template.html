@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Журнал</title>
+    <link href={% static 'calculateapp.css' %} rel="stylesheet">
+</head>
+<body>
+{% if User.is_active %}
+    <div class="auth">
+    <ul class="auth">
+        <li><a href="/medapp/edit-profile/">Редактировать профиль <b>DEBUG</b></a></li>
+        <li><a href="/auth/logout/">Logout ({{ User.first_name }} {{ User.last_name }})</a></li>
+    </ul>
+    </div>
+<div class="menu">
+    <ul class="menu">
+        <a href="/"><li>Главная</li></a>
+        {% if journalapp_active %}
+            <a href="/journal/all-clients&"><li class="active">Журнал</li></a>
+        {% else %}
+            <a href="/journal/all-clients&"><li>Записи</li></a>
+        {% endif %}
+        <a href="/medapp/clients/"><li>База</li></a>
+        <a href="/calculate/interval/"><li>Отчетность</li></a>
+        <a href="#"><li>Кабинеты <b>DEBUG</b></li></a>
+</ul>
+</div>
+{% endif %}
+
+<div id="content">
+
+<div class="left-nav">
+{% block calculate_menu %}
+    <div id="down-menu">
+<ul class="down-menu">
+    <a href="/journal/all-clients&"><li class="list-menu">Все даты</li></a>
+</ul>
+    </div>
+{% endblock %}
+</div>
+
+<div class="right-content">
+<div class="forms">
+{% block forms %}
+{% endblock %}
+</div>
+
+
+<div class="main">
+{% block main %}
+{% endblock %}
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

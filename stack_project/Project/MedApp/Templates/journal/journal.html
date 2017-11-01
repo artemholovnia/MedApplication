@@ -1,0 +1,45 @@
+{% extends 'template.html'%}
+
+{% block main %}
+<table class="table" align="center" >
+        <tr>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Имя, Фамилия</th>
+            <th>Процедура</th>
+            <th>Стоимость</th>
+            <th>Прибыль</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for date in Dates %}
+            <tr><th><b>{{ date }}</b>
+            <a href="calculate&{{ date|date:'d_m_Y' }}">Посчитать</a></th></tr>
+            {% for service in Services %}
+                {% for client in Clients %}
+                    {% for serviceforclient in ServicesForClients %}
+                        {% if serviceforclient.date == date %}
+                            {% if client.id == serviceforclient.foreign_key_id %}
+                                {% if service.id == serviceforclient.title_id %}
+                                    <tr>
+                                    <td></td>
+                                    <td>{{ serviceforclient.time }}</td>
+                                    <td>{{ client.name }} {{ client.sorname }}</td>
+                                    <td>{{ service.title }}</td>
+                                    <td>{{ serviceforclient.cash }}</td>
+                                    <td>{{ serviceforclient.income }}</td>
+                                    <td><a href="/medapp/clients/{{ client.token }}&">Перейти</a></td>
+                                    <td><a href="/medapp/clients/{{ client.token }}/edit-client/">Редактировать</a></td>
+                                    <td><a href="/medapp/clients/{{ client.token }}&{{ serviceforclient.token }}&delete-client-service/">Удалить</a></td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+    {% endfor %}
+</table>
+
+{% endblock %}

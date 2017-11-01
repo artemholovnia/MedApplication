@@ -1,0 +1,41 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="{% url 'registration-client' %}" method="POST" id="registration-client" data-user_id = '{{ User.id }}' >
+    {% csrf_token %}
+        {% if ErrorMessage %}
+            <tr>
+                <td></td>
+                <td><div class="error_message"><h6>{{ ErrorMessage }}</h6></div></td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td class="title"><label for="name" class="label">Имя</label></td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td class="title"><label for="sorname" class="label">Фамилия</label></td>
+            <td>{{ form.sorname }}</td>
+        </tr>
+        <tr>
+            <td class="title"><label for="number" class="label">Номер телефона</label></td>
+            <td>{{ form.number }}</td>
+        </tr>
+        <tr>
+            <td class="title"><label for="birthday" class="label">Дата рождения</label></td>
+            <!--<td><input type="date" name="birthday" id="input" class="input" value="{{ birthday }}" min="1950-01-01" max="2000-12-30"></td>-->
+            <td>{{ form.birthday }}</td>
+        </tr>
+        <tr><td></td><td><input type="submit" class="submit" id="submit" value="Зарегистрировать" name="submit"></td></tr>
+    </form>
+    </table>
+{% endblock %}
+
+{% block main %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+

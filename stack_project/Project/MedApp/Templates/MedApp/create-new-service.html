@@ -1,0 +1,32 @@
+{% extends 'template.html' %}
+
+{% block forms %}
+<table class="form_table" align="center">
+<form action="create-new-service.html" method="post">
+    {% csrf_token %}
+        <tr>
+            <td><label for="title" class="label">Название процедуры</label></td>
+            <td>{{ form.title }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Создать процедуру" class="submit"></td>
+        </tr>
+</form>
+</table>
+
+{% endblock %}
+ {% block main %}
+     <table class="table" align="center">
+     <tr>
+         <th>Название процедуры</th>
+         <th></th>
+     </tr>
+    {% for services in ServicesList %}
+        <tr>
+            <td>{{ services.title }}</td>
+            <td><a href="/medapp/create-new-service/{{ services.token }}!-delete-service/">Удалить</a></td>
+        </tr>
+     {% endfor %}
+     </table>
+{% endblock %}

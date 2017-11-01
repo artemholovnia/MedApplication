@@ -1,0 +1,39 @@
+{% extends 'MedApp/template.html' %}
+
+{% block forms %}
+    <table class="form_table" align="center">
+    <form action="edit-client-info.html" method="post">
+    {% csrf_token %}
+        {% if ErrorMessage %}
+            <tr>
+                <td></td>
+                <td><div class="error_message"><h6>{{ ErrorMessage }}</h6></div></td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td><label for="input">Имя</label></td>
+            <td><input type="text" name="name" id="input" class="input" value="{{ Client.name }}" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td><label for="input">Фамилия</label></td>
+            <td><input type="text" name="sorname" id="input" class="input" value="{{ Client.sorname }}" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td><label for="input">Номер телефна</label></td>
+            <td><input type="text" name="number" id="input" class="phone" value="{{ Client.number }}" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td><label for="input">День рождения</label></td>
+            <td><input type="date" name="birthday" id="input" class="input" value="{{ BirthdayStr }}"></td>
+        </tr>
+        <tr>
+            <td><label for="input">Дополнительная информация</label></td>
+            <td><input type="text" name="info" id="input" class="input" value="{{ Client.info }}" maxlength="100" ></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="submit" id="submit" value="Сохранить изменения"></td>
+        </tr>
+    </form>
+    </table>
+{% endblock %}
